@@ -19,11 +19,11 @@ An Arduino push button counter is a circuit and code that utilizes a push button
 often displayed on a serial monitor or an LCD screen. When the button is pressed, the counter increases by one, 
 typically on the rising edge of the button press (transition from LOW to HIGH). 
 
-1.Circuit:
-A push button is connected to a digital pin on the Arduino board. 
-A resistor (often 10kΩ) is used to pull the pin either HIGH or LOW when the button is not pressed (depending on the wiring configuration,
-either INPUT_PULLUP or a separate resistor). 
-An LED and a resistor can be added to provide visual feedback when the button is pressed. 
+ 1.Circuit:
+ A push button is connected to a digital pin on the Arduino board. 
+ A resistor (often 10kΩ) is used to pull the pin either HIGH or LOW when the button is not pressed (depending on the wiring configuration,
+ either INPUT_PULLUP or a separate resistor). 
+ An LED and a resistor can be added to provide visual feedback when the button is pressed. 
 
 2. Code:
 The Arduino code reads the state of the digital pin connected to the button. 
