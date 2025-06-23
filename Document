@@ -1,0 +1,74 @@
+INTRODUCTION :
+
+A push button counter using an Arduino and a single LED involves using a push button as input to increment a counter,
+and an LED to visually indicate the count or a button press.
+
+The Arduino code detects button presses (typically rising edges of the input signal) and increments a counter variable,
+which can then be displayed or used to control other parts of a project.
+The LED provides visual feedback, often blinking or lighting up to signal a button press or to indicate the current count. 
+
+REQUIRED COMPONENTS :
+
+Arduino Board: The microcontroller that controls the counting and LED.
+Push Button: The input device, usually connected to a digital input pin on the Arduino.
+LED (Light Emitting Diode): The output device, connected to another digital output pin on the Arduino.
+Resistors: Used to limit current to the LED and potentially for pull-up or pull-down resistors on the button input.
+
+CODE :
+
+#define LED 10
+#define btn 2
+int btn_state = 0;
+int count = 0;
+void setup()
+{
+  pinMode(LED, OUTPUT);
+  pinMode(btn, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  btn_state = digitalRead(btn);
+  if(btn_state == HIGH)
+  {
+  	digitalWrite(LED, HIGH);
+    count++;
+    Serial.print("No:of time button presses : ");
+    Serial.println(count);
+    delay(200);
+    digitalWrite(LED, LOW);
+    delay(200);
+  }
+}
+
+CIRCUT DIAGRAM CONNECTION :
+
+Connecting the push button to digital pin 2 on the Arduino.
+Connecting the LED and its resistor to digital pin 13.
+In the setup() function, setting pin 2 as an input with a pull-up resistor and pin 13 as an output.
+In the loop() function, checking the state of pin 2. 
+If it's HIGH (button pressed), increment a counter, and then either turn the LED on or blink it for a short time.
+
+WORKING PROCESS & IMPLEMENTATION :
+
+A counter is a device that counts the number of times when a particular event occurs.
+Here we count the number of times the push switch has been pressed.
+The Arduino detects a transition of input from a LOW state to the HIGH state during switch press; 
+that is the value of counting variable increments for a positive edge triggering.
+
+In the circuit, the push switch is connected to a digital pin of the Arduino; here at pin 9.
+When the push switch has pressed the LED ON for half a seconds and then OFF,
+it is provided just for an indication that the switch press has been detected or the value has been incremented by one.
+The counter is designed for a positive edge trigger, hence it only increments the count variable on a positive edge irrespective of how long the switch is held ON.
+In order to do that we have added a variable called “prestate”.
+The counter value increments only when two conditions are satisfied, that is the input state is high and the value of prestate is 0.
+Once the switch is pressed, along with incrementing and flashing the LED the value of prestate also set to 1;
+as you can see in the code area inside the if condition.
+As long as the switch is held ON the prestate remains 1 and it sets to 0 only when the switch is released. 
+So the code allows us to increment the variable only for positive edges of the input.
+This logic is similar to a toggle switch which ON and OFF the output for alternative switch ON of the same input;
+usually a toggle switch responds for a positive edge trigger.
+
+TINKERCAD LINK : https://www.tinkercad.com/things/7WGyRoHEdOE-fabulous-juttuli-turing/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard
+
